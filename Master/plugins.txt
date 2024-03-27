@@ -1,0 +1,5 @@
+git:4.7.1
+workflow-aggregator:2.7
+docker-workflow:1.29
+blueocean:1.27.11
+blueocean-git-pipeline:1.27.11
