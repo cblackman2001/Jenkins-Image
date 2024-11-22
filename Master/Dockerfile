@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:lts
 
 USER root
-RUN apt-get update && apt-get install -Y git curl sudo
+RUN apt-get update && apt-get install -y git curl sudo
 USER jenkins
-RUN jenkins-plugins-cli --plugins "blueocean workflow-aggregator"
+RUN jenkins-plugin-cli --plugins "blueocean workflow-aggregator"

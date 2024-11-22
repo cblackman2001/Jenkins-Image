@@ -3,12 +3,30 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: jenkins-master
     ports:
       - "8080:8080" # Jenkins URL http://localhost:8080
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+    networks:
+      - jenkins-network
 
+  jenkins-agent:
+    image: jenkins/inbound-agent:latest
+    container_name: jenkins-agent
+    environment:
+      - JENKINS_URL=http://jenkins-master:8080
+   #   - JENKINS_SECRET=
+    depends_on:
+      - jenkins-master
+    networks:
+      - jenkins-network
 
 volumes:
   jenkins_home:
+
+networks:
+  jenkins-network:
